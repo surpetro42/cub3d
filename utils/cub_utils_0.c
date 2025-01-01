@@ -79,6 +79,13 @@ static int	count_words(char const *s, char x)
 	return (count);
 }
 
+void	ft_free_split(char **str, int i)
+{
+	while (i >= 0)
+		free(str[i--]);
+	free(str);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int			res_count;
@@ -92,8 +99,8 @@ char	**ft_split(char const *s, char c)
 	str = (char **)malloc((res_count + 1) * sizeof(char *));
 	if (!str)
 		return (NULL);
-	i = -1;
-	while (++i < res_count)
+	i = 0;
+	while (i < res_count)
 	{
 		while (*s == c)
 			s++;
@@ -101,9 +108,43 @@ char	**ft_split(char const *s, char c)
 		while (*s && *s != c)
 			s++;
 		str[i] = ft_substr(p_s, 0, s - p_s);
-		if (!str[i] && ft_split(*str, i))
+		if (!str[i])
+		{
+			ft_free_split(str, i - 1);
 			return (NULL);
+		}
+		i++;
 	}
 	str[i] = NULL;
 	return (str);
 }
+
+
+// char	**ft_split(char const *s, char c)
+// {
+// 	int			res_count;
+// 	char		**str;
+// 	int			i;
+// 	const char	*p_s;
+
+// 	if (!s)
+// 		return (NULL);
+// 	res_count = count_words(s, c);
+// 	str = (char **)malloc((res_count + 1) * sizeof(char *));
+// 	if (!str)
+// 		return (NULL);
+// 	i = -1;
+// 	while (++i < res_count)
+// 	{
+// 		while (*s == c)
+// 			s++;
+// 		p_s = s;
+// 		while (*s && *s != c)
+// 			s++;
+// 		str[i] = ft_substr(p_s, 0, s - p_s);
+// 		if (!str[i] && ft_split(*str, i))
+// 			return (NULL);
+// 	}
+// 	str[i] = NULL;
+// 	return (str);
+// }

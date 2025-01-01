@@ -42,19 +42,24 @@ int	validation(char **map)
 
 void	valid_gnl(int fd)
 {
-	int		i;
 	char	*line;
 	char	**map;
 
-	i = 0;
 	line = NULL;
 	line = gnl(fd);
 	if (!line)
 		exit(write(2, "ERROR\nThere is nothing in the file\n", 36));
 	map = ft_split(	line, '\n');
-	i  = 0;
+	free(line);
 	if (validation(map) == 0)
 		perror("Incorrect card\n");
+	int i = 0;
+	while(map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }
 
 int	main(int argc, char **argv)
@@ -81,5 +86,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write(2, "Еmpty\n", 8));
+	system("valgrind --leak-check=full ./cub3d");
 	return (0);
 }

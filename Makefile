@@ -1,6 +1,6 @@
 NAME    = cub3d
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRCS    = cub3d.c \
           get_next_line/get_next_line.c \
