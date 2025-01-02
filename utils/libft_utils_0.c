@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_utils_0.c                                      :+:      :+:    :+:   */
+/*   libft_utils_0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 15:34:40 by surpetro          #+#    #+#             */
-/*   Updated: 2024/12/30 20:20:30 by surpetro         ###   ########.fr       */
+/*   Created: 2025/01/01 13:13:06 by kali              #+#    #+#             */
+/*   Updated: 2025/01/02 06:33:50 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+//		libft function
 size_t	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s && s[i] != '\0')
 		++i;
 	return (i);
 }
@@ -79,13 +80,6 @@ static int	count_words(char const *s, char x)
 	return (count);
 }
 
-void	ft_free_split(char **str, int i)
-{
-	while (i >= 0)
-		free(str[i--]);
-	free(str);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	int			res_count;
@@ -99,8 +93,8 @@ char	**ft_split(char const *s, char c)
 	str = (char **)malloc((res_count + 1) * sizeof(char *));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (i < res_count)
+	i = -1;
+	while (++i < res_count)
 	{
 		while (*s == c)
 			s++;
@@ -108,43 +102,30 @@ char	**ft_split(char const *s, char c)
 		while (*s && *s != c)
 			s++;
 		str[i] = ft_substr(p_s, 0, s - p_s);
-		if (!str[i])
-		{
-			ft_free_split(str, i - 1);
+		if (!str[i] && ft_split(*str, i))
 			return (NULL);
-		}
-		i++;
 	}
 	str[i] = NULL;
 	return (str);
 }
 
+char	*ft_strdup(const char *s1)
+{
+	size_t	i;
+	size_t	x;
+	char	*m;
 
-// char	**ft_split(char const *s, char c)
-// {
-// 	int			res_count;
-// 	char		**str;
-// 	int			i;
-// 	const char	*p_s;
-
-// 	if (!s)
-// 		return (NULL);
-// 	res_count = count_words(s, c);
-// 	str = (char **)malloc((res_count + 1) * sizeof(char *));
-// 	if (!str)
-// 		return (NULL);
-// 	i = -1;
-// 	while (++i < res_count)
-// 	{
-// 		while (*s == c)
-// 			s++;
-// 		p_s = s;
-// 		while (*s && *s != c)
-// 			s++;
-// 		str[i] = ft_substr(p_s, 0, s - p_s);
-// 		if (!str[i] && ft_split(*str, i))
-// 			return (NULL);
-// 	}
-// 	str[i] = NULL;
-// 	return (str);
-// }
+	i = 0;
+	x = ft_strlen(s1);
+	m = (char *)malloc(x + 1);
+	if (m == NULL)
+		return (NULL);
+	while (i < x)
+	{
+		m[i] = s1[i];
+		++i;
+	}
+	if (i == x)
+		m[i] = '\0';
+	return (m);
+}

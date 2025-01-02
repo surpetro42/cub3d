@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2024/12/30 20:47:18 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:13:31 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,31 @@ char	*gnl(int fd)
 	return (line);
 }
 
-int	validation(char **map)
+int	validation(t_var *var)
 {
-	if (inspect_line_pillar(map) == 0)
+	if (division_map(var) == 0)
 		return (0);
 	return (1);
 }
 
 void	valid_gnl(int fd)
 {
-	char	*line;
-	char	**map;
-
-	line = NULL;
-	line = gnl(fd);
-	if (!line)
+	t_var var;
+	
+	initialization_var(&var);
+	var.line = NULL;
+	var.line = gnl(fd);
+	if (!var.line)
 		exit(write(2, "ERROR\nThere is nothing in the file\n", 36));
-	map = ft_split(	line, '\n');
-	free(line);
-	if (validation(map) == 0)
-		perror("Incorrect card\n");
-	int i = 0;
-	while(map[i])
+	var.map = ft_split(var.line, '\n');
+	if(division_map(&var) == 0)
 	{
-		free(map[i]);
-		i++;
+		free_var(&var);
+		return ;
 	}
-	free(map);
+	// if (validation(&var) == 0)
+	// 	perror("Incorrect card\n");
+	free_var(&var);
 }
 
 int	main(int argc, char **argv)
@@ -86,6 +84,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write(2, "Еmpty\n", 8));
-	system("valgrind --leak-check=full ./cub3d");
+	// system("valgrind --leak-check=full ./cub3d");
 	return (0);
 }

@@ -101,22 +101,3 @@ char	*get_next_line(int fd)
 	left_str[fd] = temp;
 	return (line);
 }
-// int main()
-// {
-// 	int fd = open("file.txt",O_RDWR);
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("\n%s",get_next_line(fd));
-// 	return 0;
-// }
