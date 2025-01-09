@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/02 15:13:31 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/09 06:14:08 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,43 @@ char	*gnl(int fd)
 	return (line);
 }
 
-int	validation(t_var *var)
-{
-	if (division_map(var) == 0)
-		return (0);
-	return (1);
-}
-
 void	valid_gnl(int fd)
 {
 	t_var var;
-	
+
 	initialization_var(&var);
 	var.line = NULL;
 	var.line = gnl(fd);
 	if (!var.line)
 		exit(write(2, "ERROR\nThere is nothing in the file\n", 36));
 	var.map = ft_split(var.line, '\n');
-	if(division_map(&var) == 0)
+	if (validation(&var) == 0)
 	{
+		perror("Incorrect card\n");
 		free_var(&var);
 		return ;
 	}
-	// if (validation(&var) == 0)
-	// 	perror("Incorrect card\n");
+	// int x = 0;
+	// while (var.wall_img[x])
+	// {
+	// 	printf("%s\n",var.wall_img[x]);
+	// 	x++;
+	// }
+	// x = 0;
+	// printf("-----------------------\n");
+	// while (var.color_format[x])
+	// {
+	// 	printf("%s\n",var.color_format[x]);
+	// 	x++;
+	// }
+	// x = 0;
+	// printf("-----------------------\n");
+	// while (var.map_part[x])
+	// {
+	// 	printf("%s\n",var.map_part[x]);
+	// 	x++;
+	// }
+	
 	free_var(&var);
 }
 

@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_var.c                                         :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/05 09:54:35 by kali             ###   ########.fr       */
+/*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
+/*   Updated: 2025/01/08 06:23:05 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_double_pointer(char **var)
+int	validation(t_var *var)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(var && var[i])
-	{
-		free(var[i]);
-		i++;
-	}
-	free(var);
-}
-
-void	free_var(t_var *var)
-{
-	if (var->line)
-		free(var->line);
-	if (var->map)
-		free_double_pointer(var->map);
-	if (var->wall_img)
-		free_double_pointer(var->wall_img);
-	if (var->color_format)
-		free_double_pointer(var->color_format);
-	if (var->map_part)
-		free_double_pointer(var->map_part);
+	i = wall_img(var);
+	if (i == 0)
+		return (0);
+	i = color_part(var);
+	if (i == 0)
+		return (0);
+	// i = map_part(var, i);
+	// if (i == 0)
+	// 	return (0);
+	return (1);
 }
