@@ -44,6 +44,9 @@ int			ft_atoi(const char *str);
 int			validation(t_var *var);
 int			wall_img(t_var *var);
 int			color_part(t_var *var);
+/* --------- *** validation_utils *** --------- */
+int			quantity_comma(char *line);
+void		assings(t_var *var, int i, int buff);
 
 // initialization_var
 void		initialization_var(t_var *var);

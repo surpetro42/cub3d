@@ -10,6 +10,7 @@ SRCS    = cub3d.c \
 		  validation/valid_wall.c \
 		  validation/color_part.c \
 		  validation/validation.c \
+		  validation/validation_utils/color_part_utils.c \
 		  free_cub3d/free_var.c
 
 OBJ_DIR = obj
