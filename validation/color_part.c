@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/09 06:13:30 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/09 06:24:03 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int color_part(t_var *var)
 		i++;
 	}
 	var->color_format[coll] = NULL;
-	validation_collor(var);
+	if (!validation_collor(var))
+		return (0);
 	return (1);
 }
