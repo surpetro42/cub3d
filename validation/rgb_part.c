@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 08:39:01 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/14 09:17:51 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ int	cf(char *line)
 		i++;
 	while (line[i])
 	{
-		if (!(line[i] >= '0' && line[i] <= '9') || line[i] == ',')
-			return (0);
+		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ',')
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int	rgb_part(t_var *var)
@@ -117,12 +117,13 @@ int	rgb_part(t_var *var)
 	int		i;
 	int		rgb;
 	int		ngc;
+	char	*str;
 
 	i = 0;
 	rgb = 0;
+	str = NULL;
 	ngc = number_given_colors(var);
-	// printf(ngc)
-	if (!(ngc == 2))
+	if(!(ngc == 2))
 	{
 		printf("The amount of color data is incorrect.\n");
 		return (0);
@@ -134,13 +135,15 @@ int	rgb_part(t_var *var)
 	{
 		if (cf(var->map[i]) == 1)
 		{
-			printf("%s\n", var->map[i]);
-			var->rgb_format[rgb] = ft_strtrim(var->map[i], "\t ");
+			var->rgb_format[rgb] = ft_strdup(var->map[i]);
+			free(str);
 			rgb++;
 		}
 		i++;
 	}
 	var->rgb_format[rgb] = NULL;
+	if (str)
+		free(str);
 	if (!validation_collor(var))
 		return (0);
 	return (1);
