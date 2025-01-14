@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 09:17:51 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/14 20:22:07 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	cf_number(char *line, t_var *var)
 	return (1);
 }
 
-int	validation_collor(t_var *var)
+int	validation_rgb(t_var *var)
 {
 	int	i;
 	int	l;
@@ -88,11 +88,14 @@ int	validation_collor(t_var *var)
 	return (1);
 }
 
+
 int	cf(char *line)
 {
 	int	i;
+	int	count;
 
 	i = 0;
+	count = 0;
 	while (line[i])
 	{
 		if ((line[i] == 'C' || line[i] == 'F') && line[i + 1] <= 32)
@@ -106,10 +109,15 @@ int	cf(char *line)
 	while (line[i])
 	{
 		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ',')
-			return (1);
+			count++;
+		else
+		{
+			count = 0;
+			break;
+		}
 		i++;
 	}
-	return (0);
+	return (count);
 }
 
 int	rgb_part(t_var *var)
@@ -117,13 +125,11 @@ int	rgb_part(t_var *var)
 	int		i;
 	int		rgb;
 	int		ngc;
-	char	*str;
 
 	i = 0;
 	rgb = 0;
-	str = NULL;
 	ngc = number_given_colors(var);
-	if(!(ngc == 2))
+	if (!(ngc == 2))
 	{
 		printf("The amount of color data is incorrect.\n");
 		return (0);
@@ -133,18 +139,15 @@ int	rgb_part(t_var *var)
 		return (0);
 	while (var->map && var->map[i])
 	{
-		if (cf(var->map[i]) == 1)
+		if (cf(var->map[i]) > 0)
 		{
 			var->rgb_format[rgb] = ft_strdup(var->map[i]);
-			free(str);
 			rgb++;
 		}
 		i++;
 	}
 	var->rgb_format[rgb] = NULL;
-	if (str)
-		free(str);
-	if (!validation_collor(var))
+	if (!validation_rgb(var))
 		return (0);
 	return (1);
 }

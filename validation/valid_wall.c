@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 10:10:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 07:13:18 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/14 19:04:32 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	format_img(char *line)
 	char	*str;
 
 	i = 0;
-
 	str = ft_strtrim(line, "\t ");
 	while (str[i])
 	{
@@ -83,25 +82,6 @@ int	line_validation(t_var *var, int wall, int i)
 	var->wall_img[wall] = NULL;
 	return wall;
 }
-
-// int	exit_status(char **wall_img, int i)
-// {
-// 	while (wall_img && wall_img[i])
-// 	{
-// 		if (control_sides(wall_img[i]) == 0)
-// 		{
-// 			printf("the image is in the wrong direction.\n");
-// 			return (0);
-// 		}
-
-// 		if (format_img(wall_img[i]) == 0)
-// 			
-// 		i++;
-// 	}
-// 	if(i != 4)
-// 		return (0);
-// 	return (1);
-// }
 
 int	wall_img(t_var *var)
 {
