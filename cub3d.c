@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/09 17:04:14 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/14 07:42:35 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	valid_gnl(int fd)
 	}
 	x = 0;
 	printf("-----------------------\n");
-	while (var.color_format[x])
+	while (var.rgb_format[x])
 	{
-		printf("%s\n",var.color_format[x]);
+		printf("%s\n",var.rgb_format[x]);
 		x++;
 	}
 	// x = 0;
@@ -68,7 +68,6 @@ void	valid_gnl(int fd)
 	// 	printf("%s\n",var.map_part[x]);
 	// 	x++;
 	// }
-	
 	free_var(&var);
 }
 

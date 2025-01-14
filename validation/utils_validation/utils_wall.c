@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialization_var.c                               :+:      :+:    :+:   */
+/*   utils_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 13:12:56 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 07:41:35 by kali             ###   ########.fr       */
+/*   Created: 2025/01/14 07:10:04 by kali              #+#    #+#             */
+/*   Updated: 2025/01/14 07:46:59 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
-void	initialization_var(t_var *var)
+int	quality_element(char *line, int i)
 {
-	var->line = NULL;
-	var->map = NULL;
-	var->wall_img = NULL;
-	var->rgb_format = NULL;
-	var->map_part = NULL;
+	if (line && line[i] > 32)
+	{
+		while (line[i] > 32)
+			i++;
+		while (line[i] <= 32)
+			i++;
+		while (line[i] > 32)
+			i++;
+		if (line[i] == '\0')
+        	return (1);
+    }
+	return (0);
 }

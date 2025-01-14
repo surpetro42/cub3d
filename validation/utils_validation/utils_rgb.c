@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_part_utils.c                                 :+:      :+:    :+:   */
+/*   utils_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/09 15:51:22 by surpetro         ###   ########.fr       */
+/*   Created: 2025/01/14 07:09:56 by kali              #+#    #+#             */
+/*   Updated: 2025/01/14 08:39:34 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,36 @@ void	assings(t_var *var, int i, int buff)
 		var->number.f_1 = buff;
 	if (i == 5)
 		var->number.f_2 = buff;
+}
+
+int	number_given_colors(t_var *var)
+{
+	int	i;
+	int	l;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (var->map && var->map[i])
+	{
+		l = 0;
+		while (var->map[i][l])
+		{
+			if ((var->map[i][l] == 'C' || var->map[i][l] == 'F') && var->map[i][l + 1] <= 32)
+				count++;
+			l++;
+		}
+		i++;
+	}
+	printf("%d\n", count);
+	return (count);
+}
+
+int	valid_string(char **str)
+{
+	if (ft_strcmp(str[0], str[1]) == 0)
+		return (0);
+	if ((str[0][0] == str[1][0]))
+		return (0);
+	return (1);
 }

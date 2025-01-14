@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_part.c                                       :+:      :+:    :+:   */
+/*   rgb_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/09 17:07:46 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/14 08:39:01 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,24 @@ int	validation_collor(t_var *var)
 	int	l;
 
 	i = 0;
-	while (var->color_format && var->color_format[i])
+	if (valid_string(var->rgb_format) == 0)
+	{
+		printf("The color format lines are not correct.\n");
+		return (0);
+	}
+	while (var->rgb_format && var->rgb_format[i])
 	{
 		l = 0;
-		while (var->color_format[i][l])
+		while (var->rgb_format[i][l])
 		{
-			if (var->color_format[i][l] == 'C'
-				|| var->color_format[i][l] == 'F')
+			if (var->rgb_format[i][l] == 'C'
+				|| var->rgb_format[i][l] == 'F')
 			{
 				l++;
-				while (var->color_format[i][l] == 32
-					&& var->color_format[i][l] == 10)
+				while (var->rgb_format[i][l] == 32
+					&& var->rgb_format[i][l] == 10)
 					l++;
-				if (cf_number(&var->color_format[i][l], var) == 0)
+				if (cf_number(&var->rgb_format[i][l], var) == 0)
 					return (0);
 			}
 			l++;
@@ -100,62 +105,42 @@ int	cf(char *line)
 		i++;
 	while (line[i])
 	{
-		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ',')
-			return (1);
+		if (!(line[i] >= '0' && line[i] <= '9') || line[i] == ',')
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
-int	number_given_colors(t_var *var)
+int	rgb_part(t_var *var)
 {
-	int	i;
-	int	l;
-	int	count;
+	int		i;
+	int		rgb;
+	int		ngc;
 
 	i = 0;
-	count = 0;
-	while (var->map && var->map[i])
-	{
-		l = 0;
-		while (var->map[i][l])
-		{
-			if ((var->map[i][l] == 'C' || var->map[i][l] == 'F') && var->map[i][l + 1] <= 32)
-				count++;
-			l++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-int	color_part(t_var *var)
-{
-	int	i;
-	int	coll;
-	int	ngc;
-
-	i = 0;
-	coll = 0;
+	rgb = 0;
 	ngc = number_given_colors(var);
-	if(ngc == 0 || ngc > 2)
+	// printf(ngc)
+	if (!(ngc == 2))
 	{
 		printf("The amount of color data is incorrect.\n");
 		return (0);
 	}
-	var->color_format = (char **)malloc(sizeof(char *) * (ngc + 1));
-	if (!var->color_format)
+	var->rgb_format = (char **)malloc(sizeof(char *) * (ngc + 1));
+	if (!var->rgb_format)
 		return (0);
 	while (var->map && var->map[i])
 	{
 		if (cf(var->map[i]) == 1)
 		{
-			var->color_format[coll] = ft_strdup(var->map[i]);
-			coll++;
+			printf("%s\n", var->map[i]);
+			var->rgb_format[rgb] = ft_strtrim(var->map[i], "\t ");
+			rgb++;
 		}
 		i++;
 	}
-	var->color_format[coll] = NULL;
+	var->rgb_format[rgb] = NULL;
 	if (!validation_collor(var))
 		return (0);
 	return (1);

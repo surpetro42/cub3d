@@ -8,9 +8,11 @@ SRCS    = cub3d.c \
           utils/libft_utils_0.c \
 		  utils/initialization_var.c \
 		  validation/valid_wall.c \
-		  validation/color_part.c \
+		  validation/rgb_part.c \
+		  validation/map.c \
 		  validation/validation.c \
-		  validation/validation_utils/color_part_utils.c \
+		  validation/utils_validation/utils_rgb.c \
+		  validation/utils_validation/utils_wall.c \
 		  free_cub3d/free_var.c
 
 OBJ_DIR = obj

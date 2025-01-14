@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/05 09:54:35 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/14 07:41:25 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	free_var(t_var *var)
 		free_double_pointer(var->map);
 	if (var->wall_img)
 		free_double_pointer(var->wall_img);
-	if (var->color_format)
-		free_double_pointer(var->color_format);
+	if (var->rgb_format)
+		free_double_pointer(var->rgb_format);
 	if (var->map_part)
 		free_double_pointer(var->map_part);
 }
