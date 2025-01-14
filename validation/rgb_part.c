@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 20:22:07 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:27:51 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,11 @@ int	rgb_part(t_var *var)
 	int		i;
 	int		rgb;
 	int		ngc;
+	char	*str;
 
 	i = 0;
 	rgb = 0;
+	str = NULL;
 	ngc = number_given_colors(var);
 	if (!(ngc == 2))
 	{
@@ -139,9 +141,11 @@ int	rgb_part(t_var *var)
 		return (0);
 	while (var->map && var->map[i])
 	{
-		if (cf(var->map[i]) > 0)
+		if (cf(str) > 0)
 		{
-			var->rgb_format[rgb] = ft_strdup(var->map[i]);
+			str = ft_strtrim(var->map[i], "\t ");
+			var->rgb_format[rgb] = ft_strdup(str);
+			free(str);
 			rgb++;
 		}
 		i++;
