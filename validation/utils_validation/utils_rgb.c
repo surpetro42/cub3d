@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 07:09:56 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 20:26:58 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/14 21:39:04 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	number_given_colors(t_var *var)
 
 int	valid_string(char **str)
 {
-	if(!str || !str[0] || !str[1])
+	if(!str[0] || !str[1])
 		return (0);
 	if (ft_strcmp(str[0], str[1]) == 0)
 		return (0);

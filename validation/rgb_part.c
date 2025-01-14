@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 12:27:51 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/14 21:49:32 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,13 @@ int	rgb_part(t_var *var)
 		return (0);
 	while (var->map && var->map[i])
 	{
+		str = ft_strtrim(var->map[i], "\t ");
 		if (cf(str) > 0)
 		{
-			str = ft_strtrim(var->map[i], "\t ");
 			var->rgb_format[rgb] = ft_strdup(str);
-			free(str);
 			rgb++;
 		}
+		free(str);
 		i++;
 	}
 	var->rgb_format[rgb] = NULL;
