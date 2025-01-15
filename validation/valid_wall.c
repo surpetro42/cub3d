@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 10:10:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 19:04:32 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:11:28 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,16 @@
 int	format_img(char *line)
 {
 	int		i;
-	char	*str;
 
 	i = 0;
-	str = ft_strtrim(line, "\t ");
-	while (str[i])
+	while (line[i])
 	{
-		if (str[i + 4] == '\0')
+		if (line[i + 4] == '\0')
 			break;
 		i++;
 	}
-	if (ft_strcmp(&str[i], ".xpm") == 0)
-	{
-		free(str);
+	if (ft_strcmp(&line[i], ".xpm") == 0)
 		return (1);
-	}
-	free(str);
 	return (0);
 }
 
@@ -50,33 +44,26 @@ int	control_sides(char *line)
 
 int	line_validation(t_var *var, int wall, int i)
 {
-	char	*str;
-
-	str = NULL;
 	while (var->map && var->map[i] && wall <= 3)
 	{
-		str = ft_strtrim(var->map[i], "\t ");
-		if (control_sides(str) == 1)
+		if (control_sides(var->map[i]) == 1)
 		{
-			if (quality_element(str, 0) == 0)
+			if (quality_element(var->map[i], 0) == 0)
 			{
 				printf("The number of items in the img row is not true\n");
-				free(str);
 				break;
 			}
-			if (format_img(str) == 1)
+			if (format_img(var->map[i]) == 1)
 			{
-				var->wall_img[wall] = ft_strdup(str);
+				var->wall_img[wall] = ft_strdup(var->map[i]);
 				wall++;
 			}
 			else
 			{
 				printf("The image format is incorrect.\n");
-				free(str);
 				break;
 			}
 		}
-		free(str);
 		i++;
 	}
 	var->wall_img[wall] = NULL;

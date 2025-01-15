@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/14 11:45:24 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/15 14:08:23 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ char	*gnl(int fd)
 	return (line);
 }
 
+void	map_trim(char **map)
+{
+	int		i;
+	char	*buff;
+
+	i = 0;
+	buff = NULL;
+	while (map && map[i])
+	{
+		buff = ft_strdup(map[i]);
+		free(map[i]);
+		map[i] = ft_strtrim(buff, "\t ");
+		free(buff);
+		i++;
+	}
+}
+
 void	valid_gnl(int fd)
 {
 	t_var var;
@@ -43,6 +60,7 @@ void	valid_gnl(int fd)
 	if (!var.line)
 		exit(write(2, "ERROR\nThere is nothing in the file\n", 36));
 	var.map = ft_split(var.line, '\n');
+	map_trim(var.map);
 	if (validation(&var) == 0)
 	{
 		free_var(&var);
