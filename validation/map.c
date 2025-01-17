@@ -3,50 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 20:32:57 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:21:47 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	search_begin_map(t_var *var)
+int	check_elem_line_map(char elem_map)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (var->map && var->map[i] && count < 2)
-	{
-		if ((ft_strcmp(var->map[i], var->rgb_format[0]) == 0) || 
-			(ft_strcmp(var->map[i], var->rgb_format[1]) == 0))
-			count++;
-		i++;
-	}
-	if (!(count == 2))
+	if (!(elem_map && (elem_map == '1' || elem_map == '0' || elem_map == 'N'
+		|| elem_map == 'S' || elem_map == 'W' || elem_map == 'E' || elem_map == 'D')))
 		return (0);
-	return (i);
+	return (1);
 }
 
-void	map(t_var *var, int i)
+int	check_map_elem_zero(char *previous, char *next, char *current, int l)
 {
-	while (var->map[i])
+	int	res;
+	int	len;
+
+	res = 1;
+	len = ft_strlen(current);
+	if ((l == 0 || l == len) ||
+		(((size_t)l > ft_strlen(previous)) || ((size_t)l > ft_strlen(next))))
+		return (0);
+	if (previous[l] && check_elem_line_map(previous[l]) == 0)
+		res = 0;
+	if (check_elem_line_map(next[l]) == 0)
+		res = 0;
+	if (check_elem_line_map(current[l - 1]) == 0)
+		res = 0;
+	if (check_elem_line_map(current[l + 1]) == 0)
+		res = 0;
+	return (res);
+}
+
+
+int	closed_card(t_var *var, int i)
+{
+	int	l;
+
+	while (var->map_part[i])
 	{
-		// printf("%s\n", var->map[i]);
+		l = 0;
+		while (var->map_part[i][l])
+		{
+			if (var->map_part[i][l] == '0')
+			{
+				if (var->map_part[i + 1] == NULL || i == 0 || check_map_elem_zero(var->map_part[i - 1],
+					var->map_part[i + 1], var->map_part[i], l) == 0)
+				{
+					printf("The map is not properly close\n");
+					return (0);
+				}
+			}
+			l++;
+		}
 		i++;
 	}
+	return (1);
 }
 
 int	map_part(t_var *var)
 {
-	int	res;
-
-	res = search_begin_map(var);
-	if (res == 0)
+	if (valid_newline_map(var) == 0)
+	{
+		printf("Map division.\n");
 		return (0);
-	map(var, res);
+	}
+	if (count_separator(var, 6) == 0 || initialization_map_part(var, 6) == 0)
+		return (0);
+	if (closed_card(var, 0) == 0)
+		return (0);	
 	return (1);
 }

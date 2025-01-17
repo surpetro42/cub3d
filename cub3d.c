@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/15 14:08:23 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:34:29 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ void	valid_gnl(int fd)
 		free_var(&var);
 		return ;
 	}
-	int x = 0;
-	while (var.wall_img[x])
-	{
-		printf("%s\n",var.wall_img[x]);
-		x++;
-	}
-	x = 0;
-	printf("-----------------------\n");
-	while (var.rgb_format[x])
-	{
-		printf("%s\n",var.rgb_format[x]);
-		x++;
-	}
+	// int x = 0;
+	// while (var.wall_img[x])
+	// {
+	// 	printf("%s\n",var.wall_img[x]);
+	// 	x++;
+	// }
+	// x = 0;
+	// printf("-----------------------\n");
+	// while (var.rgb_format[x])
+	// {
+	// 	printf("%s\n",var.rgb_format[x]);
+	// 	x++;
+	// }
 	// x = 0;
 	// printf("-----------------------\n");
 	// while (var.map_part[x])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 21:49:56 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:04:07 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	validation(t_var *var)
 	i = rgb_part(var);
 	if (i == 0)
 		return (0);
-	// i = map_part(var);
-	// if (i == 0)
-	// 	return (0);
+	i = map_part(var);
+	if (i == 0)
+		return (0);
 	return (1);
 }

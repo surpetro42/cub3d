@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/15 14:09:18 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 07:06:53 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	validation_rgb(t_var *var)
 			{
 				l++;
 				while (var->rgb_format[i][l] == 32
-					&& var->rgb_format[i][l] == 10)
+					&& var->rgb_format[i][l] == 9)
 					l++;
 				if (cf_number(&var->rgb_format[i][l], var) == 0)
 					return (0);

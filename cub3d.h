@@ -50,7 +50,11 @@ void		assings(t_var *var, int i, int buff);
 int			number_given_colors(t_var *var);
 int			valid_string(char **str);
 int			quality_element(char *line, int i);
-
+int			initialization_map_part(t_var *var, int i);
+int			count_separator(t_var *var, int i);
+int			valid_newline_map(t_var *var);
+int			len_map(char **map);
+int			first_last_line(char *s1, char *s2);
 
 // initialization_var
 void		initialization_var(t_var *var);
