@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 10:04:40 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/20 11:18:10 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	search_mape_line(t_var *var)
 			while (var->map[i][l])
 			{
 				if (var->map[i][l] == '1')
+				
 					return (i);
 				l++;
 			}
@@ -112,6 +113,7 @@ int	map_part(t_var *var)
 		return (0);
 	}
 	line = search_mape_line(var);
+	printf("%d\n", line);
 	if (count_separator(var, line) == 0 || initialization_map_part(var, line) == 0)
 		return (0);
 	if (closed_card(var, 0) == 0)

@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 07:09:56 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 10:13:26 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/20 10:21:33 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ int	initialization_map_part(t_var *var, int i)
 	elem = 0;
 	while (var->map && var->map[i])
  	{
+		printf("!!!!!%s\n", var->map[i]);
 		var->map_part[elem] = ft_strdup(var->map[i]);
 		if (!var->map_part[elem])
 		{
+			printf("((((((((((((((((((((()))))))))))))))))))))\n");
 			var->map_part[elem] = NULL;
 			return (0);
 		}
