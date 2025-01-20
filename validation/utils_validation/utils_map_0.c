@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 07:09:56 by kali              #+#    #+#             */
-/*   Updated: 2025/01/17 09:41:28 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/20 10:13:26 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,29 @@ int	initialization_map_part(t_var *var, int i)
  	{
 		var->map_part[elem] = ft_strdup(var->map[i]);
 		if (!var->map_part[elem])
+		{
+			var->map_part[elem] = NULL;
 			return (0);
+		}
 		elem++;
 		i++;
 	}
 	var->map_part[elem] = NULL;
+	printf("^^^^^^^^^^^^^^^^^|n");
 	return (1);
 }
 
 int	count_separator(t_var *var, int i)
 {
+	int	count;
+
+	count = 0;
 	while (var->map && var->map[i])
+	{
+		count++;
 		i++;
-	var->map_part = (char **)malloc(sizeof(char *) * (i + 1));
+	}
+	var->map_part = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!var->map_part)
 		return (0);
 	return (1);

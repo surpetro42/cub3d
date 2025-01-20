@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/17 09:34:29 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/20 10:04:00 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void	valid_gnl(int fd)
 		return ;
 	}
 	// int x = 0;
+	// while (var.map[x])
+	// {
+	// 	printf("%d ----- %s\n", x, var.map[x]);
+	// 	x++;
+	// }
 	// while (var.wall_img[x])
 	// {
 	// 	printf("%s\n",var.wall_img[x]);
@@ -86,7 +91,7 @@ void	valid_gnl(int fd)
 	// 	printf("%s\n",var.map_part[x]);
 	// 	x++;
 	// }
-	free_var(&var);
+	// free_var(&var);
 }
 
 int	main(int argc, char **argv)

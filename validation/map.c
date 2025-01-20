@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/17 11:21:47 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/20 10:04:40 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	closed_card(t_var *var, int i)
 	while (var->map_part[i])
 	{
 		l = 0;
+		// printf("%s\n", var->map_part[i]);
 		while (var->map_part[i][l])
 		{
 			if (var->map_part[i][l] == '0')
@@ -67,14 +68,51 @@ int	closed_card(t_var *var, int i)
 	return (1);
 }
 
+int	search_mape_line(t_var *var)
+{
+	int	i;
+	int	l;
+
+	i = 0;
+	while (var->map[i])
+	{
+		if (ft_strcmp(var->map[i], var->rgb_format[1]) == 0)
+		{
+			i++;
+			break;
+		}
+		i++;
+	}
+	while (var->map && var->map[i])
+	{
+		if (ft_strlen(var->map[i]) != 0)
+		{
+			l = 0;
+			while (var->map[i][l])
+			{
+				if (var->map[i][l] == '1')
+					return (i);
+				l++;
+			}
+			if (l > 0)
+				return (0);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	map_part(t_var *var)
 {
+	int	line;
+
 	if (valid_newline_map(var) == 0)
 	{
 		printf("Map division.\n");
 		return (0);
 	}
-	if (count_separator(var, 6) == 0 || initialization_map_part(var, 6) == 0)
+	line = search_mape_line(var);
+	if (count_separator(var, line) == 0 || initialization_map_part(var, line) == 0)
 		return (0);
 	if (closed_card(var, 0) == 0)
 		return (0);	
