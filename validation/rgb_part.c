@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 08:01:16 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/21 06:03:44 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,11 +150,5 @@ int	rgb_part(t_var *var)
 	var->rgb_format[rgb] = NULL;
 	if (!validation_rgb(var))
 		return (0);
-	int x = 0;
-	while (var->rgb_format[x])
-	{
-		printf("--> %s\n",var->rgb_format[x]);
-		x++;
-	}
 	return (1);
 }

@@ -7,7 +7,7 @@ SRCS    = cub3d.c \
           get_next_line/get_next_line_utils.c \
           utils/libft_utils_0.c \
 		  utils/initialization_var.c \
-		  validation/valid_wall.c \
+		  validation/wall_img.c \
 		  validation/rgb_part.c \
 		  validation/map.c \
 		  validation/validation.c \

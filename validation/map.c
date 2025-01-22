@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 11:18:10 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/21 07:37:50 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	closed_card(t_var *var, int i)
 	while (var->map_part[i])
 	{
 		l = 0;
-		// printf("%s\n", var->map_part[i]);
 		while (var->map_part[i][l])
 		{
-			if (var->map_part[i][l] == '0')
+			if (var->map_part[i][l] == '0' || var->map_part[i][l] == 'N'
+		|| var->map_part[i][l] == 'S' || var->map_part[i][l] == 'W' || var->map_part[i][l] == 'E')
 			{
 				if (var->map_part[i + 1] == NULL || i == 0 || check_map_elem_zero(var->map_part[i - 1],
 					var->map_part[i + 1], var->map_part[i], l) == 0)
@@ -103,6 +103,31 @@ int	search_mape_line(t_var *var)
 	return (0);
 }
 
+
+int	inspect_personage(t_var *var, int i)
+{
+	int	l;
+	int	count;
+
+	count = 0;
+	while (var->map_part[i])
+	{
+		l = 0;
+		while (var->map_part[i][l])
+		{
+			if (var->map_part[i][l] == 'S' || var->map_part[i][l] == 'W'
+				|| var->map_part[i][l] == 'E' || var->map_part[i][l] == 'N')
+				count++;
+			l++;
+		}
+		i++;
+	}
+	if (count == 1)
+		return (1);
+	printf("The character must be alone.\n");
+	return (0);
+}
+
 int	map_part(t_var *var)
 {
 	int	line;
@@ -113,10 +138,11 @@ int	map_part(t_var *var)
 		return (0);
 	}
 	line = search_mape_line(var);
-	printf("%d\n", line);
 	if (count_separator(var, line) == 0 || initialization_map_part(var, line) == 0)
 		return (0);
-	if (closed_card(var, 0) == 0)
+	if ((inspect_personage(var, 0) == 0) || (closed_card(var, 0) == 0))
 		return (0);	
+	// if (inspect_element_map(var) == 0)
+	// 	return (0);
 	return (1);
 }
