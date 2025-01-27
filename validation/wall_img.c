@@ -6,17 +6,16 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 04:45:35 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 06:03:38 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/27 09:04:20 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	format_img(char *line)
+int	format_img(char *line, int i)
 {
-	int		i;
+	int		fd;
 
-	i = 0;
 	while (line[i])
 	{
 		if (line[i + 4] == '\0')
@@ -24,7 +23,20 @@ int	format_img(char *line)
 		i++;
 	}
 	if (ft_strcmp(&line[i], ".xpm") == 0)
-		return (1);
+	{
+		while (i > 0)
+		{
+			if (line[i - 1] <= 32)
+				break;
+			i--;
+		}
+		printf("%s\n", &line[i]);
+		fd = open(&line[i], O_RDWR);
+		printf("%d\n", fd);
+		if (fd > 2)
+			return (1);	
+	}
+	// printf("!!!!!!!!!!\n");
 	return (0);
 }
 
@@ -61,7 +73,7 @@ int	line_validation(t_var *var, int wall, int i)
 				printf("The number of items in the img row is not true\n");
 				break;
 			}
-			if (format_img(var->map[i]) == 1)
+			if (format_img(var->map[i], 0) == 1)
 			{
 				var->wall_img[wall] = ft_strdup(var->map[i]);
 				wall++;

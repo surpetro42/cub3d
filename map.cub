@@ -1,12 +1,12 @@
-NO 			./textures/bluestone.xpm
+NO 			./textures/wall_0.xpm
 
 				
 				
 			
 
-		 	 	 	 	 	 	 	 	                  SO ./textures/greystone.xpm
-WE 	./textures/eagle.xpm
-EA ./textures/redbrick.xpm
+		 	 	 	 	 	 	 	 	                  SO ./textures/wall_0.xpm
+WE 	./textures/wall_1.xpm
+EA ./textures/wall_1.xpm
 C 65,240,255
 F 71,19,0000021
 				
