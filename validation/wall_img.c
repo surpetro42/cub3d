@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 04:45:35 by kali              #+#    #+#             */
-/*   Updated: 2025/01/27 09:04:20 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/29 05:19:27 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	format_img(char *line, int i)
 {
-	int		fd;
+	int	fd;
 
 	while (line[i])
 	{
@@ -30,43 +30,37 @@ int	format_img(char *line, int i)
 				break;
 			i--;
 		}
-		printf("%s\n", &line[i]);
 		fd = open(&line[i], O_RDWR);
-		printf("%d\n", fd);
 		if (fd > 2)
 			return (1);	
 	}
-	// printf("!!!!!!!!!!\n");
 	return (0);
 }
 
-int	control_sides(char *line)
+
+int	control_sides(char *line, int wall)
 {
-	if ((line[0] == 'N' && line[1] == 'O'
-		&& (line[2] == ' ' || line[2] == '\n')) )
+	if (line[0] == 'N' && line[1] == 'O'
+		&& (line[2] == ' ' || line[2] == '\n') && wall == 0)
 		return (1);
 	else if (line[0] == 'S' && line[1] == 'O'
-		&& (line[2] == ' ' || line[2] == '\n'))
+		&& (line[2] == ' ' || line[2] == '\n') && wall == 1)
 		return (1);
 	else if (line[0] == 'W' && line[1] == 'E'
-		&& (line[2] == ' ' || line[2] == '\n'))
+		&& (line[2] == ' ' || line[2] == '\n') && wall == 2)
 		return (1);
 	else if (line[0] == 'E' && line[1] == 'A'
-		&& (line[2] == ' ' || line[2] == '\n'))
+		&& (line[2] == ' ' || line[2] == '\n') && wall == 3)
 		return (1);
 	else
-	{
 		return (0);
-	}
 }
 
 int	line_validation(t_var *var, int wall, int i)
 {
 	while (var->map && var->map[i] && wall <= 3)
 	{
-		// if (ft_strcmp(var->map[i], "\0") == 0)
-			// i++;
-		if (control_sides(var->map[i]) == 1)
+		if (control_sides(var->map[i], wall) == 1)
 		{
 			if (quality_element(var->map[i], 0) == 0)
 			{
@@ -90,6 +84,43 @@ int	line_validation(t_var *var, int wall, int i)
 	return (wall);
 }
 
+// int	inspect_x(char *line1, char *line2)
+// {
+// 	printf("line1 == %s\nline2 == %s\n", line1, line2);
+// 	if (line1[0] == line2[0] && line1[1] == line2[1])
+// 		return (0);
+// 	printf("!!!!!!!!!!!!!!!!!!!!\n");
+// 	return (1);
+// }
+
+// int	inspect(t_var *var, char *line)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (var->wall_img[i])
+// 	{
+// 		if (inspect_x(var->wall_img[i], line) == 0)
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
+// int	recurring_img_line(t_var *var, char **wall_img)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (wall_img[i])
+// 	{
+// 		if (inspect(var, wall_img[i]) == 0)
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
 int	wall_img(t_var *var)
 {
 	int 	wall;
@@ -100,5 +131,7 @@ int	wall_img(t_var *var)
 		return (0);
 	if (line_validation(var, wall, 0) != 4)
 		return (0);
+	// if (recurring_img_line(var, var->wall_img) == 0)
+	// 	return (0);
 	return (1);
 }

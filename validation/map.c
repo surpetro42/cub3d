@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 07:37:50 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/27 11:45:07 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,6 @@ int	map_part(t_var *var)
 	if (count_separator(var, line) == 0 || initialization_map_part(var, line) == 0)
 		return (0);
 	if ((inspect_personage(var, 0) == 0) || (closed_card(var, 0) == 0))
-		return (0);	
-	// if (inspect_element_map(var) == 0)
-	// 	return (0);
+		return (0);
 	return (1);
 }

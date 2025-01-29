@@ -38,6 +38,7 @@ char		*ft_strdup(const char *s1);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
 int			ft_atoi(const char *str);
 char		*ft_strtrim(const char *s1, const char *set);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /* --------- *** validation *** --------- */
 int			validation(t_var *var);

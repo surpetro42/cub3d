@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:13:06 by kali              #+#    #+#             */
-/*   Updated: 2025/01/10 08:16:36 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/27 12:07:32 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,4 +174,17 @@ char	*ft_strtrim(const char *s1, const char *set)
 		--y;
 	m = ft_substr(s1, x, y - x);
 	return (m);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	while (*s1 != '\0' && *s1 == *s2 && n > 0)
+	{
+		n--;
+		s1++;
+		s2++;
+	}
+	if (n == 0)
+		return (0);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
