@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/01/27 11:45:07 by kali             ###   ########.fr       */
+/*   Updated: 2025/02/07 02:45:05 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_map_elem_zero(char *previous, char *next, char *current, int l)
 	res = 1;
 	len = ft_strlen(current);
 	if ((l == 0 || l == len) ||
-		(((size_t)l > ft_strlen(previous)) || ((size_t)l > ft_strlen(next))))
+		(((size_t)l >= ft_strlen(previous)) || ((size_t)l >= ft_strlen(next))))
 		return (0);
 	if (previous[l] && check_elem_line_map(previous[l]) == 0)
 		res = 0;
