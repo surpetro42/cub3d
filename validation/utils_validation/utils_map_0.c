@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map_0.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 07:09:56 by kali              #+#    #+#             */
-/*   Updated: 2025/02/07 03:46:49 by kali             ###   ########.fr       */
+/*   Updated: 2025/02/07 15:12:51 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,60 @@ int	first_last_line(char *s1, char *s2)
 	return (1);
 }
 
+int	len_line_map(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str && str[i])
+	{
+		if(str[i] == '\t')
+			count += 4;
+		count++;
+		i++;
+	}
+	return count;
+}
+
+char	*assigns_elem_mappart(char *map_line)
+{
+	char	*res;
+	int		i;
+	int		buff;
+	int		cycle_to_four;
+	
+	res = NULL;
+	i = 0;
+	buff = 0;
+	res = malloc(sizeof(char *) * (len_line_map(map_line) + 1));
+	if (!res)
+		return (NULL);
+	while (map_line && map_line[i])
+	{
+		if (map_line[i] == '\t')
+		{
+			i++;
+			cycle_to_four = 0;
+			while (cycle_to_four < 4)
+			{
+				res[buff] = ' ';
+				buff++;
+				cycle_to_four++;
+			}
+		}
+		if(map_line[i])
+		{
+			res[buff] = map_line[i];
+			i++;
+		}
+		buff++;
+	}
+	res[buff] = '\0';
+	return (res);
+}
+
 int	initialization_map_part(t_var *var, int i)
 {
 	int elem;
@@ -40,7 +94,7 @@ int	initialization_map_part(t_var *var, int i)
 	elem = 0;
 	while (var->map && var->map[i])
  	{
-		var->map_part[elem] = ft_strdup(var->map[i]);
+		var->map_part[elem] = assigns_elem_mappart(var->map[i]);
 		if (!var->map_part[elem])
 		{
 			var->map_part[elem] = NULL;
