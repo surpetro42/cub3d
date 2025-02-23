@@ -39,6 +39,7 @@ char		*ft_substr(const char *s, unsigned int start, size_t len);
 int			ft_atoi(const char *str);
 char		*ft_strtrim(const char *s1, const char *set);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		*ft_strtrim_free(char *s1, const char *set);
 
 /* --------- *** validation *** --------- */
 int			validation(t_var *var);

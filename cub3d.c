@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/07 15:00:47 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/23 10:16:59 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	valid_gnl(int fd)
 	// 	printf("%d ----- %s\n", x, var.map[x]);
 	// 	x++;
 	// }
-	// while (var.wall_img[x])
-	// {
-	// 	printf("%s\n",var.wall_img[x]);
-	// 	x++;
-	// }
+	while (var.wall_img[x])
+	{
+		printf("%s\n",var.wall_img[x]);
+		x++;
+	}
 	// x = 0;
 	// printf("-----------------------\n");
 	// while (var.rgb_format[x])
@@ -84,13 +84,13 @@ void	valid_gnl(int fd)
 	// 	printf("%s\n",var.rgb_format[x]);
 	// 	x++;
 	// }
-	x = 0;
+	// x = 0;
 	// printf("-----------------------\n");
-	while (var.map_part[x])
-	{
-		printf("%s\n",var.map_part[x]);
-		x++;
-	}
+	// while (var.map_part[x])
+	// {
+	// 	printf("%s\n",var.map_part[x]);
+	// 	x++;
+	// }
 	free_var(&var);
 }
 

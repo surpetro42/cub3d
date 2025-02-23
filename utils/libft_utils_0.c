@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:13:06 by kali              #+#    #+#             */
-/*   Updated: 2025/01/27 12:07:32 by kali             ###   ########.fr       */
+/*   Updated: 2025/02/23 12:04:31 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,26 @@ int	ft_atoi(const char *str)
 		++x;
 	}
 	return (nb * number);
+}
+
+char	*ft_strtrim_free(char *s1, const char *set)
+{
+	size_t	x;
+	size_t	y;
+	char	*m;
+
+	x = 0;
+	y = 0;
+	if (s1 == NULL)
+		return (NULL);
+	while (s1[x] && ft_strchr(set, s1[x]) != NULL)
+		++x;
+	y = ft_strlen(s1);
+	while (y > x && ft_strchr(set, s1[y - 1]) != NULL)
+		--y;
+	m = ft_substr(s1, x, y - x);
+	free(s1);
+	return (m);
 }
 
 char	*ft_strtrim(const char *s1, const char *set)

@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:38:17 by kali              #+#    #+#             */
-/*   Updated: 2025/02/07 02:56:48 by kali             ###   ########.fr       */
+/*   Updated: 2025/02/23 10:12:45 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	closed_card(t_var *var, int i)
 		while (var->map_part[i][l])
 		{
 			if (var->map_part[i][l] == '0' || var->map_part[i][l] == 'N'
-		|| var->map_part[i][l] == 'S' || var->map_part[i][l] == 'W' || var->map_part[i][l] == 'E')
+		|| var->map_part[i][l] == 'S' || var->map_part[i][l] == 'W' || var->map_part[i][l] == 'E' || var->map_part[i][l] == 'D')
 			{
 				if (var->map_part[i + 1] == NULL || i == 0 || check_map_elem_zero(var->map_part[i - 1],
 					var->map_part[i + 1], var->map_part[i], l) == 0)
