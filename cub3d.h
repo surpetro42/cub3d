@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 19:36:13 by surpetro          #+#    #+#             */
+/*   Updated: 2025/02/25 19:40:40 by surpetro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -105,7 +117,7 @@ typedef struct s_var
 	int				map_ht;
 	int				hide_map;
 	char			*line;
-	char 			**map;
+	char			**map;
 	char			**wall_img;
 	char			**rgb_format;
 	char			**map_part;
@@ -121,70 +133,70 @@ typedef struct s_var
 }	t_var;
 
 /* --------- *** free_cub3d *** --------- */
-void		free_call(t_var *var, int flag);
-void		free_var(t_var *var);
-void		free_double_pointer(char **var);
+void			free_call(t_var *var, int flag);
+void			free_var(t_var *var);
+void			free_double_pointer(char **var);
 
 /* --------- *** destroy_image *** --------- */
-void    	destroy_all_img(t_var *var, int flag);
+void			destroy_all_img(t_var *var, int flag);
 
 /* --------- *** utils *** --------- */
-size_t		ft_strlen(const char *s);
-int			ft_strcmp(char *s1, char *s2);
-char		**ft_split(char const *s, char c);
-char		*ft_strdup(const char *s1);
-char		*ft_substr(const char *s, unsigned int start, size_t len);
-int			ft_atoi(const char *str);
-char		*ft_strtrim(const char *s1, const char *set);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-char		*ft_strtrim_free(char *s1, const char *set);
+size_t			ft_strlen(const char *s);
+int				ft_strcmp(char *s1, char *s2);
+char			**ft_split(char const *s, char c);
+char			*ft_strdup(const char *s1);
+char			*ft_substr(const char *s, unsigned int start, size_t len);
+int				ft_atoi(const char *str);
+char			*ft_strtrim(const char *s1, const char *set);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*ft_strtrim_free(char *s1, const char *set);
 
 /* --------- *** validation *** --------- */
-int			validation(t_var *var);
-int			wall_img(t_var *var);
-int			rgb_part(t_var *var, int i, int rgb, int ngc);
-int			map_part(t_var *var);
+int				validation(t_var *var);
+int				wall_img(t_var *var);
+int				rgb_part(t_var *var, int i, int rgb, int ngc);
+int				map_part(t_var *var);
 /* --------- validation_utils --------- */
-int			quantity_comma(char *line);
-void		assings(t_var *var, int i, int buff);
-int			number_given_colors(t_var *var);
-int			valid_string(char **str);
-int			quality_element(char *line, int i);
-int			initialization_map_part(t_var *var, int i);
-int			count_separator(t_var *var, int i);
-int			valid_newline_map(t_var *var);
-int			len_map(char **map);
-int			first_last_line(char *s1, char *s2);
-int			search_mape_line(t_var *var, int i, int l);
-int			search_mape_line_elem(t_var *var, int i);
-int			initialization_number(char **str, t_var *var, char c);
-int			cf_number(char *line, t_var *var, char c);
-int			error_valid_string(t_var *var);
-int			validation_rgb(t_var *var, int i, int l, char c);
-int			cf(char *line, int i, int count);
-void		end_result(char **wall_img);
-int			line_validation_error(t_var *var, int i);
+int				quantity_comma(char *line);
+void			assings(t_var *var, int i, int buff);
+int				number_given_colors(t_var *var);
+int				valid_string(char **str);
+int				quality_element(char *line, int i);
+int				initialization_map_part(t_var *var, int i);
+int				count_separator(t_var *var, int i);
+int				valid_newline_map(t_var *var);
+int				len_map(char **map);
+int				first_last_line(char *s1, char *s2);
+int				search_mape_line(t_var *var, int i, int l);
+int				search_mape_line_elem(t_var *var, int i);
+int				initialization_number(char **str, t_var *var, char c);
+int				cf_number(char *line, t_var *var, char c);
+int				error_valid_string(t_var *var);
+int				validation_rgb(t_var *var, int i, int l, char c);
+int				cf(char *line, int i, int count);
+void			end_result(char **wall_img);
+int				line_validation_error(t_var *var, int i);
 // initialization_var
-void		initialization_var(t_var *var);
+void			initialization_var(t_var *var);
 
 /* --------- *** RAYCASTING *** --------- */
 
 //start_game
-void		init_img_var(t_var *var);
-void		game_start(t_var var);
+void			init_img_var(t_var *var);
+void			game_start(t_var var);
 
 //player_pos
-void		got_player_pos(t_var *vars);
+void			got_player_pos(t_var *vars);
 
 //textures
-void		get_door(t_img *door, t_var *var, char *path);
-void		set_sprite_textures(t_var *var);
-void		get_sprite_textures(t_var *var);
-void		set_wall_textures(t_var *var);
-void		get_wall__textures(t_var *var);
+void			get_door(t_img *door, t_var *var, char *path);
+void			set_sprite_textures(t_var *var);
+void			get_sprite_textures(t_var *var);
+void			set_wall_textures(t_var *var);
+void			get_wall__textures(t_var *var);
 
 //image
-void		create_image(t_var *var);
+void			create_image(t_var *var);
 
 //texture_color_pixel
 int				create_trgb(int t, int r, int g, int b);
@@ -194,34 +206,34 @@ t_img			*choose_texture(t_var *var);
 void			draw_texture(t_var *var, int x, int tex_x);
 
 //raycasting
-void		raycasting(t_var *var);
+void			raycasting(t_var *var);
 
 //anim
-void		sprite_anim(t_var *var);
+void			sprite_anim(t_var *var);
 
 //calculate
-void		dda_algorithm(t_var *var);
-void		ray_pos(t_var *var, int w);
-void		calc_draw_ends(t_var *var, t_draw *tex);
-int			calc_texture_x(t_var *var);
-void		step_dir(t_var *var);
+void			dda_algorithm(t_var *var);
+void			ray_pos(t_var *var, int w);
+void			calc_draw_ends(t_var *var, t_draw *tex);
+int				calc_texture_x(t_var *var);
+void			step_dir(t_var *var);
 
 //move
-int			key_press(int key, t_var *var);
-void		move_s(t_var *var, double move);
-void		move_w(t_var *var, double move);
-void		move_right_left(t_var *var, int key, double move);
-int			mouse_move(int x, int y, t_var *var);
+int				key_press(int key, t_var *var);
+void			move_s(t_var *var, double move);
+void			move_w(t_var *var, double move);
+void			move_right_left(t_var *var, int key, double move);
+int				mouse_move(int x, int y, t_var *var);
 
 //view_and_door
-int			press(t_var *var);
-void		open_close_door(t_var *var);
-void		get_dir(t_var *var);
-void		rotate_view(t_var *var, double prevdir_x,
-				double prevplane_x, double rotate);
-void		change_view(t_var *var, int side, double rotate);
+int				press(t_var *var);
+void			open_close_door(t_var *var);
+void			get_dir(t_var *var);
+void			rotate_view(t_var *var, double prevdir_x,
+					double prevplane_x, double rotate);
+void			change_view(t_var *var, int side, double rotate);
 
 //minimap
-int			draw_minimap(t_var *var);
+int				draw_minimap(t_var *var);
 
 #endif

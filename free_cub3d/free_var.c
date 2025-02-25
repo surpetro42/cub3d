@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:25:16 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/25 12:43:11 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:46:46 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	free_call(t_var *var, int flag)
 	destroy_all_img(var, flag);
 	free(var->wall);
 	free_var(var);
+	exit(1);
 }
 
 void	free_double_pointer(char **var)

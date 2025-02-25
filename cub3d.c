@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:26:44 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/24 19:26:45 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:43:17 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	map_trim(char **map)
 
 void	valid_gnl(int fd)
 {
-	t_var var;
+	t_var	var;
 
 	initialization_var(&var);
 	var.line = NULL;
@@ -95,6 +95,5 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (write(2, "Еmpty\n", 8));
-	// system("valgrind --leak-check=full ./cub3d");
 	return (0);
 }

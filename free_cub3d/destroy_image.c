@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:25:20 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/25 12:42:36 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:45:22 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,4 @@ void	destroy_all_img(t_var *var, int flag)
 		mlx_destroy_image(var->mlx.ptr, var->closedoor.img);
 	if (var->opendoor.img)
 		mlx_destroy_image(var->mlx.ptr, var->opendoor.img);
-	exit(1);
 }
