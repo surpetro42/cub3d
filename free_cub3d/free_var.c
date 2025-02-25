@@ -3,21 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   free_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/01/14 07:41:25 by kali             ###   ########.fr       */
+/*   Created: 2025/02/24 19:25:16 by surpetro          #+#    #+#             */
+/*   Updated: 2025/02/25 12:43:11 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+void	free_call(t_var *var, int flag)
+{
+	destroy_all_img(var, flag);
+	free(var->wall);
+	free_var(var);
+}
+
 void	free_double_pointer(char **var)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(var && var[i])
+	i = 0;
+	while (var && var[i])
 	{
 		free(var[i]);
 		i++;

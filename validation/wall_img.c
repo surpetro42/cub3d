@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 04:45:35 by kali              #+#    #+#             */
-/*   Updated: 2025/02/23 12:05:26 by kali             ###   ########.fr       */
+/*   Created: 2025/02/24 19:27:07 by surpetro          #+#    #+#             */
+/*   Updated: 2025/02/24 20:24:42 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	format_img(char *line, int i)
 	while (line[i])
 	{
 		if (line[i + 4] == '\0')
-			break;
+			break ;
 		i++;
 	}
 	if (ft_strcmp(&line[i], ".xpm") == 0)
@@ -27,16 +27,15 @@ int	format_img(char *line, int i)
 		while (i > 0)
 		{
 			if (line[i - 1] <= 32)
-				break;
+				break ;
 			i--;
 		}
 		fd = open(&line[i], O_RDWR);
 		if (fd > 2)
-			return (1);	
+			return (1);
 	}
 	return (0);
 }
-
 
 int	control_sides(char *line, int x)
 {
@@ -58,16 +57,14 @@ int	control_sides(char *line, int x)
 
 int	line_validation(t_var *var, int wall, int i)
 {
-	static int x;
+	static int	x;
+
 	while (var->map && var->map[i] && wall <= 3)
 	{
 		if (control_sides(var->map[i], x) == 1)
 		{	
-			if (quality_element(var->map[i], 0) == 0)
-			{
-				printf("The number of items in the img row is not true\n");
-				break;
-			}
+			if (line_validation_error(var, i) == 0)
+				break ;
 			if (format_img(var->map[i], 0) == 1)
 			{
 				var->wall_img[wall] = ft_strdup(var->map[i]);
@@ -77,7 +74,7 @@ int	line_validation(t_var *var, int wall, int i)
 			else
 			{
 				printf("The image format is incorrect.\n");
-				break;
+				break ;
 			}
 			i = -1;
 		}
@@ -87,22 +84,9 @@ int	line_validation(t_var *var, int wall, int i)
 	return (wall);
 }
 
-void	end_result(char **wall_img)
-{
-	int i;
-
-	i = 0;
-	while (wall_img && wall_img[i])
-	{
-		wall_img[i] = ft_strtrim_free(wall_img[i], "WENOSA");
-		wall_img[i] = ft_strtrim_free(wall_img[i], " \t");
-		i++;
-	}
-}
-
 int	wall_img(t_var *var)
 {
-	int 	wall;
+	int	wall;
 
 	wall = 0;
 	var->wall_img = (char **)malloc(sizeof(char *) * (4 + 1));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 15:26:43 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/23 10:16:59 by kali             ###   ########.fr       */
+/*   Created: 2025/02/24 19:26:44 by surpetro          #+#    #+#             */
+/*   Updated: 2025/02/24 19:26:45 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,8 @@ void	valid_gnl(int fd)
 		free_var(&var);
 		return ;
 	}
-	int x = 0;
-	// while (var.map[x])
-	// {
-	// 	printf("%d ----- %s\n", x, var.map[x]);
-	// 	x++;
-	// }
-	while (var.wall_img[x])
-	{
-		printf("%s\n",var.wall_img[x]);
-		x++;
-	}
-	// x = 0;
-	// printf("-----------------------\n");
-	// while (var.rgb_format[x])
-	// {
-	// 	printf("%s\n",var.rgb_format[x]);
-	// 	x++;
-	// }
-	// x = 0;
-	// printf("-----------------------\n");
-	// while (var.map_part[x])
-	// {
-	// 	printf("%s\n",var.map_part[x]);
-	// 	x++;
-	// }
+	got_player_pos(&var);
+	game_start(var);
 	free_var(&var);
 }
 

@@ -3,132 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_part.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 06:20:09 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 06:03:44 by kali             ###   ########.fr       */
+/*   Created: 2025/02/24 19:27:02 by surpetro          #+#    #+#             */
+/*   Updated: 2025/02/24 20:10:43 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	initialization_number(char **str, t_var *var)
+int	rgb_part(t_var *var, int i, int rgb, int ngc)
 {
-	int	i;
-	int	buff;
-
-	i = 0;
-	while (str[i])
-	{
-		buff = ft_atoi(str[i]);
-		if (!(buff <= 255 && buff >= 0))
-		{
-			printf("The number exceeds.\n");
-			return (0);
-		}
-		assings(var, i, buff);
-		i++;
-	}
-	return (1);
-}
-
-int	cf_number(char *line, t_var *var)
-{
-	int		comma;
-	char	**str;
-
-	comma = quantity_comma(line);
-	if (comma != 2)
-	{
-		printf("The number of commas is incorrect.\n");
-		return (0);
-	}
-	str = ft_split(line, ',');
-	if (!str)
-		return (0);
-	if (initialization_number(str, var) == 0)
-	{
-		free_double_pointer(str);
-		return (0);
-	}
-	free_double_pointer(str);
-	return (1);
-}
-
-int	validation_rgb(t_var *var)
-{
-	int	i;
-	int	l;
-
-	i = 0;
-	if (valid_string(var->rgb_format) == 0)
-	{
-		printf("The color format lines are not correct.\n");
-		return (0);
-	}
-	while (var->rgb_format && var->rgb_format[i])
-	{
-		l = 0;
-		while (var->rgb_format[i][l])
-		{
-			if (var->rgb_format[i][l] == 'C'
-				|| var->rgb_format[i][l] == 'F')
-			{
-				l++;
-				while (var->rgb_format[i][l] == 32
-					&& var->rgb_format[i][l] == 9)
-					l++;
-				if (cf_number(&var->rgb_format[i][l], var) == 0)
-					return (0);
-			}
-			l++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-
-int	cf(char *line)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (line[i])
-	{
-		if ((line[i] == 'C' || line[i] == 'F') && line[i + 1] <= 32)
-			break ;
-		i++;
-	}
-	if (line[i] == 'C' || line[i] == 'F')
-		i++;
-	while (line[i] && line[i] <= 32)
-		i++;
-	while (line[i])
-	{
-		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ',')
-			count++;
-		else
-		{
-			count = 0;
-			break;
-		}
-		i++;
-	}
-	return (count);
-}
-
-int	rgb_part(t_var *var)
-{
-	int		i;
-	int		rgb;
-	int		ngc;
-
-
-	i = 0;
-	rgb = 0;
 	ngc = number_given_colors(var);
 	if (!(ngc == 2))
 	{
@@ -140,7 +25,7 @@ int	rgb_part(t_var *var)
 		return (0);
 	while (var->map && var->map[i])
 	{
-		if (cf(var->map[i]) > 0)
+		if (cf(var->map[i], 0, 0) > 0)
 		{
 			var->rgb_format[rgb] = ft_strdup(var->map[i]);
 			rgb++;
@@ -148,7 +33,7 @@ int	rgb_part(t_var *var)
 		i++;
 	}
 	var->rgb_format[rgb] = NULL;
-	if (!validation_rgb(var))
+	if (!validation_rgb(var, 0, 0, ' '))
 		return (0);
 	return (1);
 }
