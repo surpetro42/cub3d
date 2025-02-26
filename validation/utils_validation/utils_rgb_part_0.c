@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 20:06:34 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/24 20:08:36 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:14:13 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	initialization_number(char **str, t_var *var, char c)
 		buff = ft_atoi(str[i]);
 		if (!(buff <= 255 && buff >= 0))
 		{
-			printf("The number exceeds.\n");
+			printf("ERROR!\nThe number exceeds.\n");
 			return (0);
 		}
 		assings(var, i + k, buff);
@@ -39,17 +39,27 @@ int	initialization_number(char **str, t_var *var, char c)
 int	cf_number(char *line, t_var *var, char c)
 {
 	int		comma;
+	int		count;
 	char	**str;
 
 	comma = quantity_comma(line);
+	count = 0;
 	if (comma != 2)
 	{
-		printf("The number of commas is incorrect.\n");
+		printf("ERROR!\nThe number of commas is incorrect.\n");
 		return (0);
 	}
 	str = ft_split(line, ',');
 	if (!str)
 		return (0);
+		
+	while (str && str[count])
+		count++;
+	if (count != 3)
+	{
+		printf("ERROR!\nIncorrect number of numbers is specified.\n");
+		return (0);
+	}
 	if (initialization_number(str, var, c) == 0)
 	{
 		free_double_pointer(str);

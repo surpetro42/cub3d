@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:10 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/26 13:30:59 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:20:56 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	count_separator(t_var *var, int i)
 
 int	search_next_newline(char *line, int i)
 {
+	if (line[i] == '\n')
+		i++;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] == '\n')
@@ -101,11 +103,30 @@ int	search_next_newline(char *line, int i)
 	return (1);
 }
 
+int	end_line_elem_map(char *line, int i)
+{
+	while (line && line[i])
+		i++;
+	if(line[i] == '\0')
+		i--;
+	while (line && line[i])
+	{
+		if (line[i] == '1')
+			return (i);
+		if (!(line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+			return (0);
+		i--;
+	}
+	return (0);
+}
+
 int	valid_newline_map(t_var *var)
 {
 	int	i;
+	int	end;
 
 	i = 0;
+	end = end_line_elem_map(var->line, 0);
 	while (var->line && var->line[i])
 		i++;
 	while (var->line[i] != ',' && i >= 0)
@@ -114,11 +135,11 @@ int	valid_newline_map(t_var *var)
 		i++;
 	while (var->line[i] != '1')
 		i++;
-	while (var->line[i])
+	while (i <= end && var->line[i])
 	{
 		if (var->line[i] == '\n')
 		{
-			if (search_next_newline(&var->line[i], 1) == 0)
+			if (search_next_newline(&var->line[i], 0) == 0)
 				return (0);
 		}
 		i++;
