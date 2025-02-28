@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:02 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/26 20:03:41 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:55:35 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	rgb_part(t_var *var, int i, int rgb, int ngc)
 	ngc = number_given_colors(var);
 	if (!(ngc == 2))
 	{
-		printf("The amount of color data is incorrect.\n");
+		printf("ERROR\nThe amount of color data is incorrect.\n");
 		return (0);
 	}
 	var->rgb_format = (char **)malloc(sizeof(char *) * (ngc + 1));

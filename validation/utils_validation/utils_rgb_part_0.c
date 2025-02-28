@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 20:06:34 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/26 20:14:13 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:55:55 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	error_valid_string(t_var *var)
 {
 	if (valid_string(var->rgb_format) == 0)
 	{
-		printf("The color format lines are not correct.\n");
+		printf("ERROR\nThe color format lines are not correct.\n");
 		return (0);
 	}
 	return (1);

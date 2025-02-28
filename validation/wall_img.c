@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:07 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/24 20:24:42 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:55:44 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	line_validation(t_var *var, int wall, int i)
 			}
 			else
 			{
-				printf("The image format is incorrect.\n");
+				printf("ERROR\nThe image format is incorrect.\n");
 				break ;
 			}
 			i = -1;

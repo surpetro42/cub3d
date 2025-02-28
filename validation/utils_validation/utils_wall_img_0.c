@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:15 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/24 20:44:47 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:56:00 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	line_validation_error(t_var *var, int i)
 {
 	if (quality_element(var->map[i], 0) == 0)
 	{
-		printf("The number of items in the img row is not true\n");
+		printf("ERROR\nThe number of items in the img row is not true\n");
 		return (0);
 	}
 	return (1);

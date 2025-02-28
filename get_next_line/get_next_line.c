@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:24:40 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/24 19:24:41 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:54:32 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,23 +102,3 @@ char	*get_next_line(int fd)
 	left_str = temp;
 	return (line);
 }
-
-// int main()
-// {
-// 	int fd = open("file.txt",O_RDWR);
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("%s",get_next_line(fd));
-// 	// printf("\n%s",get_next_line(fd));
-// 	return 0;
-// }

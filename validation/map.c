@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:00 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/24 19:57:18 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:55:26 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_elem_line_map(char elem_map)
 	return (1);
 }
 
-int	check_map_elem_zero(char *previous, char *next, char *current, int l)
+int	check_map_elem(char *previous, char *next, char *current, int l)
 {
 	int	res;
 	int	len;
@@ -51,15 +51,24 @@ int	closed_card(t_var *var, int i)
 		l = 0;
 		while (var->map_part[i][l])
 		{
-			if (var->map_part[i][l] == '0' || var->map_part[i][l] == 'N'
+			if(var->map_part[i][l] == 'D')
+			{
+				if (check_map_elem_door(var->map_part[i - 1],
+					var->map_part[i + 1], var->map_part[i], l) == 0)
+				{
+					printf("ERROR\nThe doors are positioned incorrectly\n");
+					return (0);
+				}
+			}
+			else if (var->map_part[i][l] == '0' || var->map_part[i][l] == 'N'
 				|| var->map_part[i][l] == 'S' || var->map_part[i][l] == 'W'
-				|| var->map_part[i][l] == 'E' || var->map_part[i][l] == 'D')
+				|| var->map_part[i][l] == 'E')
 			{
 				if (var->map_part[i + 1] == NULL || i == 0
-					|| check_map_elem_zero(var->map_part[i - 1],
+					|| check_map_elem(var->map_part[i - 1],
 						var->map_part[i + 1], var->map_part[i], l) == 0)
 				{
-					printf("The map is not properly close\n");
+					printf("ERROR\nThe map is not properly close\n");
 					return (0);
 				}
 			}
@@ -90,7 +99,7 @@ int	inspect_personage(t_var *var, int i)
 	}
 	if (count == 1)
 		return (1);
-	printf("The character must be alone.\n");
+	printf("ERROR\nThe character must be alone.\n");
 	return (0);
 }
 
@@ -100,7 +109,7 @@ int	map_part(t_var *var)
 
 	if (valid_newline_map(var) == 0)
 	{
-		printf("Map division.\n");
+		printf("ERROR\nMap division.\n");
 		return (0);
 	}
 	line = search_mape_line(var, 0, 0);
