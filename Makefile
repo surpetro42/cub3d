@@ -19,6 +19,7 @@ SRCS    = cub3d.c \
 		  validation/utils_validation/utils_map_3.c \
 		  validation/utils_validation/utils_rgb_part_0.c \
 		  validation/utils_validation/utils_rgb_part_1.c \
+		  validation/utils_validation/utils_rgb_part_2.c \
 		  validation/utils_validation/utils_wall_img_0.c \
 		  raycasting/start_game.c \
 		  raycasting/player_pos.c \

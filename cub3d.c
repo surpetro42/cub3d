@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:26:44 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/28 20:13:16 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/03/02 13:46:00 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,11 @@ int	main(int argc, char **argv)
 		{
 			fd = open(argv[1], O_RDWR);
 			if (fd <= 0)
-			{
-				return (1);
-			}
+				return (write(2, "ERROR\nLikei commenti ari ARDISHOP\n", 34));
 			valid_gnl(fd);
 		}
 		if (fd < 0)
-			return (write(2, "ERROR\n", 6));
+			return (write(2, "ERROR\nLikei commenti ari ARDISHOP\n", 34));
 		i++;
 	}
 	else

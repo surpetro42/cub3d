@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 20:06:34 by surpetro          #+#    #+#             */
-/*   Updated: 2025/03/02 13:24:44 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:22:12 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,30 @@ int	cf_number(char *line, t_var *var, char c)
 	return (1);
 }
 
-int	validation_rgb(t_var *var, int i, int l, char c)
+int	validate_rgb_format(char *rgb_line, t_var *var)
 {
+	int		l;
+	char	c;
+
+	l = 0;
+	if (checking_rgb_line(rgb_line, 0) == 0)
+	{
+		printf("ERROR\nThe RGB line has an incorrect C and F format.\n");
+		return (0);
+	}
+	c = rgb_line[l];
+	l++;
+	while (rgb_line[l] == 32 || rgb_line[l] == 9)
+		l++;
+	if (cf_number(&rgb_line[l], var, c) == 0)
+		return (0);
+	return (1);
+}
+
+int	validation_rgb(t_var *var, int i)
+{
+	int	l;
+
 	if (error_valid_string(var) == 0)
 		return (0);
 	while (var->rgb_format && var->rgb_format[i])
@@ -91,15 +113,9 @@ int	validation_rgb(t_var *var, int i, int l, char c)
 		l = 0;
 		while (var->rgb_format[i][l])
 		{
-			if (var->rgb_format[i][l] == 'C'
-				|| var->rgb_format[i][l] == 'F')
+			if (var->rgb_format[i][l] == 'C' || var->rgb_format[i][l] == 'F')
 			{
-				c = var->rgb_format[i][l];
-				l++;
-				while (var->rgb_format[i][l] == 32
-					|| var->rgb_format[i][l] == 9)
-					l++;
-				if (cf_number(&var->rgb_format[i][l], var, c) == 0)
+				if (!validate_rgb_format(var->rgb_format[i], var))
 					return (0);
 			}
 			l++;
@@ -107,30 +123,4 @@ int	validation_rgb(t_var *var, int i, int l, char c)
 		i++;
 	}
 	return (1);
-}
-
-int	cf(char *line, int i, int count)
-{
-	while (line[i])
-	{
-		if ((line[i] == 'C' || line[i] == 'F') && line[i + 1] <= 32)
-			break ;
-		i++;
-	}
-	if (line[i] == 'C' || line[i] == 'F')
-		i++;
-	while (line[i] && line[i] <= 32)
-		i++;
-	while (line[i])
-	{
-		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ',')
-			count++;
-		else
-		{
-			count = 0;
-			break ;
-		}
-		i++;
-	}
-	return (count);
 }

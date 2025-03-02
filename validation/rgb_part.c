@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:02 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/27 16:55:35 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:18:27 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	rgb_part(t_var *var, int i, int rgb, int ngc)
 		i++;
 	}
 	var->rgb_format[rgb] = NULL;
-	if (!validation_rgb(var, 0, 0, ' '))
+	if (!validation_rgb(var, 0))
 		return (0);
 	return (1);
 }
