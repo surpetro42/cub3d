@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 20:06:34 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/27 16:55:55 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/03/02 13:24:44 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@ int	initialization_number(char **str, t_var *var, char c)
 	return (1);
 }
 
-int	cf_number(char *line, t_var *var, char c)
+int	validate_commas_and_count(char *line)
 {
 	int		comma;
-	int		count;
 	char	**str;
+	int		count;
 
 	comma = quantity_comma(line);
-	count = 0;
 	if (comma != 2)
 	{
 		printf("ERROR!\nThe number of commas is incorrect.\n");
@@ -52,16 +51,12 @@ int	cf_number(char *line, t_var *var, char c)
 	str = ft_split(line, ',');
 	if (!str)
 		return (0);
-		
-	while (str && str[count])
+	count = 0;
+	while (str[count])
 		count++;
 	if (count != 3)
 	{
 		printf("ERROR!\nIncorrect number of numbers is specified.\n");
-		return (0);
-	}
-	if (initialization_number(str, var, c) == 0)
-	{
 		free_double_pointer(str);
 		return (0);
 	}
@@ -69,13 +64,21 @@ int	cf_number(char *line, t_var *var, char c)
 	return (1);
 }
 
-int	error_valid_string(t_var *var)
+int	cf_number(char *line, t_var *var, char c)
 {
-	if (valid_string(var->rgb_format) == 0)
+	char	**str;
+
+	if (!validate_commas_and_count(line))
+		return (0);
+	str = ft_split(line, ',');
+	if (!str)
+		return (0);
+	if (initialization_number(str, var, c) == 0)
 	{
-		printf("ERROR\nThe color format lines are not correct.\n");
+		free_double_pointer(str);
 		return (0);
 	}
+	free_double_pointer(str);
 	return (1);
 }
 
@@ -94,7 +97,7 @@ int	validation_rgb(t_var *var, int i, int l, char c)
 				c = var->rgb_format[i][l];
 				l++;
 				while (var->rgb_format[i][l] == 32
-					&& var->rgb_format[i][l] == 9)
+					|| var->rgb_format[i][l] == 9)
 					l++;
 				if (cf_number(&var->rgb_format[i][l], var, c) == 0)
 					return (0);

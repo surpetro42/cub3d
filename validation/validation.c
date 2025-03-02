@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:27:05 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/27 16:53:27 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:45:27 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	valid_map(t_var *var, int i, int l)
 			l = 0;
 			while (var->map[i][l])
 			{
-				if (!(var->map[i][l] == '1' || var->map[i][l] == ' ' || var->map[i][l] == '\t'))
+				if (!(var->map[i][l] == '1'
+					|| var->map[i][l] == ' ' || var->map[i][l] == '\t'))
 				{
 					printf("ERROR\nExtra line in the map\n");
 					return (0);

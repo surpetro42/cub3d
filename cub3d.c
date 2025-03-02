@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 19:26:44 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/25 19:43:17 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:13:16 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,16 @@ int	main(int argc, char **argv)
 		{
 			fd = open(argv[1], O_RDWR);
 			if (fd <= 0)
+			{
 				return (1);
+			}
 			valid_gnl(fd);
 		}
 		if (fd < 0)
-			return (1);
+			return (write(2, "ERROR\n", 6));
 		i++;
 	}
 	else
-		return (write(2, "Еmpty\n", 8));
+		return (write(2, "ERROR\nЕmpty\n", 12));
 	return (0);
 }

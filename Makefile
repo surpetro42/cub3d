@@ -16,6 +16,7 @@ SRCS    = cub3d.c \
 		  validation/utils_validation/utils_map_0.c \
 		  validation/utils_validation/utils_map_1.c \
 		  validation/utils_validation/utils_map_2.c \
+		  validation/utils_validation/utils_map_3.c \
 		  validation/utils_validation/utils_rgb_part_0.c \
 		  validation/utils_validation/utils_rgb_part_1.c \
 		  validation/utils_validation/utils_wall_img_0.c \

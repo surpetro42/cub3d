@@ -6,7 +6,7 @@
 /*   By: surpetro <surpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:36:13 by surpetro          #+#    #+#             */
-/*   Updated: 2025/02/27 15:46:50 by surpetro         ###   ########.fr       */
+/*   Updated: 2025/03/02 13:23:04 by surpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,13 @@ int				validation_rgb(t_var *var, int i, int l, char c);
 int				cf(char *line, int i, int count);
 void			end_result(char **wall_img);
 int				line_validation_error(t_var *var, int i);
-int				check_map_elem_door(char *previous, char *next, char *current, int l);
+int				check_map_elements(t_var *var, int i, int l);
+int				check_doors(t_var *var, int i, int l);
+int				check_map_elem(char *previous,
+					char *next, char *current, int l);
+int				check_map_elem_door(char *previous,
+					char *next, char *current, int l);
+int				error_valid_string(t_var *var);
 
 // initialization_var
 void			initialization_var(t_var *var);
